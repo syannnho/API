@@ -1,6 +1,3 @@
-import fs from "fs";
-import path from "path";
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -12,7 +9,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    // ========== BAGIAN 1: VERIFIKASI DEVICE ==========
     const dbPath = path.join(process.cwd(), "api", "device-db.json");
     const dbContent = fs.readFileSync(dbPath, "utf8");
     const deviceDb = JSON.parse(dbContent);
@@ -35,8 +31,15 @@ export default async function handler(req, res) {
       });
     }
 
-    // ========== BAGIAN 2: LANJUT GENERATE CREATE ACC ==========
-    // Device valid, lanjut proses create account
+    // CEK APAKAH HANYA VERIFIKASI?
+    if (req.body?.verify_only === true) {
+      return res.status(200).json({ 
+        device_verified: true,
+        device_id: deviceId
+      });
+    }
+
+    // ========== LANJUT CREATE ACCOUNT ==========
     const payload = {
       ...req.body,
       device_id: deviceId,
