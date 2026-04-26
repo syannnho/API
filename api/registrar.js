@@ -3,10 +3,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  // 🔐 ambil auth key dari header
   const authKey = req.headers["x-auth-key"];
-
-  // 🔐 validasi
   if (authKey !== process.env.AUTH_KEY) {
     return res.status(403).json({ error: "Forbidden" });
   }
@@ -22,7 +19,6 @@ export default async function handler(req, res) {
     });
 
     const data = await response.text();
-
     res.status(200).send(data);
 
   } catch (err) {
