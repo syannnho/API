@@ -24,9 +24,5 @@
                 }
             ]
         }
-    ],
-    "env": {
-        "PROXY_KEY": "@proxy_key_secret",
-        "KILL_SWITCH": "false"
-    }
+    ]
 }
