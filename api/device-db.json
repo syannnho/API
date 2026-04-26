@@ -1,25 +1,8 @@
-
 {
   "devices": [
     {
       "device_id": "Device1234",
-      "is_verified": true,
-      "notes": "Device utama - bisa generate"
-    },
-    {
-      "device_id": "Device5678",
-      "is_verified": false,
-      "notes": "Device nonaktif - ditolak"
-    },
-    {
-      "device_id": "iPhone_John",
-      "is_verified": true,
-      "notes": "iPhone milik John"
-    },
-    {
-      "device_id": "Samsung_Siti",
-      "is_verified": true,
-      "notes": "Samsung milik Siti"
+      "is_verified": true
     }
   ]
 }
