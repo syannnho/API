@@ -1,0 +1,32 @@
+{
+    "version": 2,
+    "functions": {
+        "api/registrar.js": {
+            "maxDuration": 30,
+            "memory": 1024
+        }
+    },
+    "headers": [
+        {
+            "source": "/api/(.*)",
+            "headers": [
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                },
+                {
+                    "key": "Access-Control-Allow-Methods",
+                    "value": "POST, OPTIONS"
+                },
+                {
+                    "key": "Access-Control-Allow-Headers",
+                    "value": "Content-Type, x-proxy-key, x-auth-key, User-Agent"
+                }
+            ]
+        }
+    ],
+    "env": {
+        "PROXY_KEY": "@proxy_key_secret",
+        "KILL_SWITCH": "false"
+    }
+}
