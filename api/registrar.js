@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import fetch from "node-fetch";
 
 const client = new MongoClient(process.env.MONGO_URI);
 
@@ -10,8 +11,8 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: "Method not allowed" });
     }
 
-    // connect db
     await client.connect();
+
     const db = client.db("n4taza");
     const devices = db.collection("devices");
 
@@ -27,13 +28,11 @@ export default async function handler(req, res) {
       return res.status(403).json({ error: "Device invalid / used" });
     }
 
-    // mark used
     await devices.updateOne(
       { device_id: deviceId },
       { $set: { used: true } }
     );
 
-    // proxy request
     const response = await fetch(
       "http://130.61.149.246:25400/oauth/guest/registrar",
       {
