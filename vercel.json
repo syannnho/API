@@ -1,11 +1,5 @@
+
 {
-    "version": 2,
-    "functions": {
-        "api/registrar.js": {
-            "maxDuration": 30,
-            "memory": 1024
-        }
-    },
     "headers": [
         {
             "source": "/api/(.*)",
