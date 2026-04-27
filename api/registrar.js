@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
     // proxy ke API asli
     const response = await fetch(
-      "http://130.61.149.246:25400/oauth/guest/registrar",
+      "",
       {
         method: "POST",
         headers: {
